@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
-import ColourSelector from './ColourSelector';
 
-const Selection = () => {
+const Selection = ({ applyColor }) => {
   const [background, setBackground] = useState('white'); // Default background color
 
-  const selectNextBackground = (newConfig) => {
-    setBackground(newConfig.background); // Update the background color
+  const updateSelectionStyle = (newBackground) => {
+    setBackground(newBackground.background); // Update the background color
   };
 
-  const config = { background: 'blue' }; // Example configuration
-
   return (
-    <div style={{ backgroundColor: background, height: '100vh', padding: '20px' }}>
-      <h1>Background Selector</h1>
-      <ColourSelector config={config} selectNextBackground={selectNextBackground} />
+    <div
+      style={{
+        backgroundColor: background,
+        height: '100px',
+        width: '100px',
+        margin: '10px',
+        display: 'inline-block',
+        border: '1px solid black',
+      }}
+      data-testid={background} // Add data-testid for testing
+      onClick={() => applyColor(updateSelectionStyle)} // Trigger applyColor on click
+    >
+      Selection Box
     </div>
   );
 };

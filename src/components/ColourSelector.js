@@ -2,14 +2,15 @@ import React from 'react';
 
 const ColourSelector = (props) => {
   const { config, selectNextBackground } = props;
-  const { background } = config;
+  const { background, key } = config;
 
   return (
-    <button 
-      className="colour-selector-button" // Updated to use a proper class name
-      onClick={() => selectNextBackground({ background })} // Simplified object shorthand
+    <button
+      className="colour-selector-button"
+      data-testid={key} // Add data-testid for testing
+      onClick={() => selectNextBackground({ background })}
     >
-      Selection
+      {config.label}
     </button>
   );
 };
